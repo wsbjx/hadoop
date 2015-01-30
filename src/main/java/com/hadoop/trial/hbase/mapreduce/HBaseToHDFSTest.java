@@ -55,7 +55,7 @@ public class HBaseToHDFSTest
 		job.setJarByClass(HBaseToHDFSTest.class);
 		TableMapReduceUtil.initTableMapperJob("T_STUDENT", new Scan(), HBaseMapper.class, IntWritable.class,
 				Text.class, job);
-		FileOutputFormat.setOutputPath(job, new Path("hdfs://10.10.141.14:9000/wangsheng/bbase-output3"));
+		FileOutputFormat.setOutputPath(job, new Path("hdfs://10.10.141.14:9000/wangsheng/bbase-output4"));
 		job.setNumReduceTasks(0);
 		System.exit(job.waitForCompletion(true) ? 0 : 1);
 
