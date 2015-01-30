@@ -86,10 +86,12 @@ public class MapReduceTest extends Configured implements Tool
 	public int run(String[] args) throws Exception
 	{
 		Configuration conf = getConf();
+		conf.set("mapreduce.framework.name", "yarn");
+		conf.set("yarn.resourcemanager.address", "10.10.141.14:8132");
 		Job job = new Job(conf, "logAnalysis");
 		job.setJarByClass(MapReduceTest.class);
 		FileInputFormat.addInputPath(job, new Path("hdfs://10.10.141.14:9000/wangsheng/tomcat.log"));
-		FileOutputFormat.setOutputPath(job, new Path("hdfs://10.10.141.14:9000/wangsheng/output/test4"));
+		FileOutputFormat.setOutputPath(job, new Path("hdfs://10.10.141.14:9000/wangsheng/output/test5"));
 		job.setMapperClass(Map.class);
 		job.setReducerClass(Reduce.class);
 		job.setOutputFormatClass(TextOutputFormat.class);

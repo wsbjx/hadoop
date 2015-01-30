@@ -50,12 +50,14 @@ public class HBaseToHDFSTest
 		Configuration configuration = new Configuration();
 		configuration.set("hbase.zookeeper.quorum", "10.10.141.1");
 		configuration.set("hbase.zookeeper.property.clientPort", "2181");
+		configuration.set("mapreduce.framework.name", "yarn");
+		configuration.set("yarn.resourcemanager.address", "10.10.141.14:8132");
 		configuration = HBaseConfiguration.create(configuration);
 		Job job = new Job(configuration, "import hbase to hdfs");
 		job.setJarByClass(HBaseToHDFSTest.class);
 		TableMapReduceUtil.initTableMapperJob("T_STUDENT", new Scan(), HBaseMapper.class, IntWritable.class,
 				Text.class, job);
-		FileOutputFormat.setOutputPath(job, new Path("hdfs://10.10.141.14:9000/wangsheng/bbase-output4"));
+		FileOutputFormat.setOutputPath(job, new Path("hdfs://10.10.141.14:9000/wangsheng/bbase-output5"));
 		job.setNumReduceTasks(0);
 		System.exit(job.waitForCompletion(true) ? 0 : 1);
 
