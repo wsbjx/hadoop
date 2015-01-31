@@ -50,6 +50,7 @@ public class HBaseToHDFSTest
 		Configuration configuration = new Configuration();
 		configuration.set("hbase.zookeeper.quorum", "10.10.141.1");
 		configuration.set("hbase.zookeeper.property.clientPort", "2181");
+		configuration.set("fs.default.name", "hdfs://10.10.141.14:9000");
 		configuration.set("mapreduce.framework.name", "yarn");
 		configuration.set("yarn.resourcemanager.address", "10.10.141.14:8132");
 		configuration = HBaseConfiguration.create(configuration);
