@@ -91,7 +91,7 @@ public class MapReduceTest extends Configured implements Tool
 		Job job = Job.getInstance(conf, MapReduceTest.class.getName());
 		job.setJarByClass(MapReduceTest.class);
 		FileInputFormat.addInputPath(job, new Path("/wangsheng/tomcat.log"));
-		FileOutputFormat.setOutputPath(job, new Path("/wangsheng/output/test10"));
+		FileOutputFormat.setOutputPath(job, new Path("/wangsheng/output/" + System.currentTimeMillis()));
 		job.setMapperClass(Map.class);
 		job.setReducerClass(Reduce.class);
 		job.setOutputFormatClass(TextOutputFormat.class);
