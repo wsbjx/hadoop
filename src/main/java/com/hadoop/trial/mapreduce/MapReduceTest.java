@@ -91,11 +91,10 @@ public class MapReduceTest extends Configured implements Tool
 		Job job = Job.getInstance(conf, MapReduceTest.class.getName());
 		job.setJarByClass(MapReduceTest.class);
 		FileInputFormat.addInputPath(job, new Path("hdfs://10.10.141.14:9000/wangsheng/tomcat.log"));
-		FileOutputFormat.setOutputPath(job, new Path("hdfs://10.10.141.14:9000/wangsheng/output/test5"));
+		FileOutputFormat.setOutputPath(job, new Path("hdfs://10.10.141.14:9000/wangsheng/output/test8"));
 		job.setMapperClass(Map.class);
 		job.setReducerClass(Reduce.class);
 		job.setOutputFormatClass(TextOutputFormat.class);
-		// keep the same format with the output of Map and Reduce
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(IntWritable.class);
 		job.waitForCompletion(true);
