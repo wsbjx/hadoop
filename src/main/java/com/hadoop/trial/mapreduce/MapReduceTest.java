@@ -86,12 +86,12 @@ public class MapReduceTest extends Configured implements Tool
 	{
 		Configuration conf = getConf();
 		conf.set("mapreduce.framework.name", "yarn");
-		conf.set("yarn.resourcemanager.address", "10.10.141.14:8132");
-		conf.set("fs.default.name", "hdfs://10.10.141.14:9000");
+		conf.set("yarn.resourcemanager.address", "192.168.254.129:8032");
+		conf.set("fs.default.name", "hdfs://192.168.254.129:9000");
 		Job job = Job.getInstance(conf, MapReduceTest.class.getName());
 		job.setJarByClass(MapReduceTest.class);
-		FileInputFormat.addInputPath(job, new Path("hdfs://10.10.141.14:9000/wangsheng/tomcat.log"));
-		FileOutputFormat.setOutputPath(job, new Path("hdfs://10.10.141.14:9000/wangsheng/output/test8"));
+		FileInputFormat.addInputPath(job, new Path("/wangsheng/tomcat.log"));
+		FileOutputFormat.setOutputPath(job, new Path("/wangsheng/output/test10"));
 		job.setMapperClass(Map.class);
 		job.setReducerClass(Reduce.class);
 		job.setOutputFormatClass(TextOutputFormat.class);
