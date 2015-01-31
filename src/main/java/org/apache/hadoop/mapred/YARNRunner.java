@@ -461,6 +461,8 @@ public class YARNRunner implements ClientProtocol
 				jobConf.get(MRJobConfig.JOB_ACL_VIEW_JOB, MRJobConfig.DEFAULT_JOB_ACL_VIEW_JOB));
 		acls.put(ApplicationAccessType.MODIFY_APP,
 				jobConf.get(MRJobConfig.JOB_ACL_MODIFY_JOB, MRJobConfig.DEFAULT_JOB_ACL_MODIFY_JOB));
+		
+		replaceEnvironment(environment);
 
 		// Setup ContainerLaunchContext for AM container
 		ContainerLaunchContext amContainer = ContainerLaunchContext.newInstance(localResources, environment,
@@ -699,5 +701,15 @@ public class YARNRunner implements ClientProtocol
 					+ "are used. These values should be set as part of the " + "LD_LIBRARY_PATH in the " + component
 					+ " JVM env using " + envConf + " config settings.");
 		}
+	}
+
+	private void replaceEnvironment(Map<String, String> environment)
+	{
+		String tmpClassPath = environment.get("CLASSPATH");
+		tmpClassPath = tmpClassPath.replaceAll(";", ":");
+		tmpClassPath = tmpClassPath.replaceAll("%PWD%", "\\$PWD");
+		tmpClassPath = tmpClassPath.replaceAll("%HADOOP_MAPRED_HOME%", "\\$HADOOP_MAPRED_HOME");
+		tmpClassPath = tmpClassPath.replaceAll("\\\\", "/");
+		environment.put("CLASSPATH", tmpClassPath);
 	}
 }

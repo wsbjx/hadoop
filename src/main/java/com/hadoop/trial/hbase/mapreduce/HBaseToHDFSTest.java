@@ -44,7 +44,6 @@ public class HBaseToHDFSTest
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws Exception
 	{
 		Configuration configuration = new Configuration();
@@ -54,7 +53,7 @@ public class HBaseToHDFSTest
 		configuration.set("mapreduce.framework.name", "yarn");
 		configuration.set("yarn.resourcemanager.address", "10.10.141.14:8132");
 		configuration = HBaseConfiguration.create(configuration);
-		Job job = new Job(configuration, "import hbase to hdfs");
+		Job job = Job.getInstance(configuration, HBaseToHDFSTest.class.getName());
 		job.setJarByClass(HBaseToHDFSTest.class);
 		TableMapReduceUtil.initTableMapperJob("T_STUDENT", new Scan(), HBaseMapper.class, IntWritable.class,
 				Text.class, job);
