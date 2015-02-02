@@ -1,9 +1,9 @@
 package com.hadoop.trial.mapreduce;
 
 import java.io.IOException;
+import java.util.Date;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
@@ -21,7 +21,6 @@ import org.apache.hadoop.util.ToolRunner;
 
 public class MapReduceTest extends Configured implements Tool
 {
-	static Log log = LogFactory.getLog(MapReduceTest.class);
 
 	enum Counter
 	{
@@ -48,7 +47,6 @@ public class MapReduceTest extends Configured implements Tool
 				{
 					return;
 				}
-				log.info("value: " + line);
 				requestUrl = requestUrl.substring(requestUrl.indexOf(' ') + 1, lastIndex);
 				Text out = new Text(requestUrl);
 				context.write(out, one);
@@ -84,14 +82,18 @@ public class MapReduceTest extends Configured implements Tool
 	@Override
 	public int run(String[] args) throws Exception
 	{
-		Configuration conf = getConf();
+		String classpath = "$HADOOP_CONF_DIR,$HADOOP_COMMON_HOME/share/hadoop/common/*,$HADOOP_COMMON_HOME/share/hadoop/common/lib/*,$HADOOP_HDFS_HOME/share/hadoop/hdfs/*,$HADOOP_HDFS_HOME/share/hadoop/hdfs/lib/*,$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*,$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*,$HADOOP_YARN_HOME/share/hadoop/yarn/*,$HADOOP_YARN_HOME/share/hadoop/yarn/lib/*";
+		Job job = Job.getInstance();
+		Configuration conf = job.getConfiguration();
 		conf.set("mapreduce.framework.name", "yarn");
 		conf.set("yarn.resourcemanager.address", "192.168.254.129:8032");
 		conf.set("fs.default.name", "hdfs://192.168.254.129:9000");
-		Job job = Job.getInstance(conf, MapReduceTest.class.getName());
+		conf.set("yarn.application.classpath", classpath);
+		job.setJobName(MapReduceTest.class.getName());
 		job.setJarByClass(MapReduceTest.class);
 		FileInputFormat.addInputPath(job, new Path("/wangsheng/tomcat.log"));
-		FileOutputFormat.setOutputPath(job, new Path("/wangsheng/output/" + System.currentTimeMillis()));
+		String date = DateFormatUtils.format(new Date(), "yyyyMMddHHmmss");
+		FileOutputFormat.setOutputPath(job, new Path("/wangsheng/output/" + date));
 		job.setMapperClass(Map.class);
 		job.setReducerClass(Reduce.class);
 		job.setOutputFormatClass(TextOutputFormat.class);
