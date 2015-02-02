@@ -18,9 +18,12 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MapReduceTest extends Configured implements Tool
 {
+	static Logger logger = LoggerFactory.getLogger(MapReduceTest.class);
 
 	enum Counter
 	{
@@ -47,8 +50,9 @@ public class MapReduceTest extends Configured implements Tool
 				{
 					return;
 				}
+				logger.info("gagaga: " + line);
 				requestUrl = requestUrl.substring(requestUrl.indexOf(' ') + 1, lastIndex);
-				Text out = new Text(requestUrl);
+				Text out = new Text(requestUrl + "-gagaga");
 				context.write(out, one);
 			}
 			catch (Exception e)
@@ -86,8 +90,9 @@ public class MapReduceTest extends Configured implements Tool
 		Job job = Job.getInstance();
 		Configuration conf = job.getConfiguration();
 		conf.set("mapreduce.framework.name", "yarn");
-		conf.set("yarn.resourcemanager.address", "192.168.254.129:8032");
-		conf.set("fs.default.name", "hdfs://192.168.254.129:9000");
+		conf.set("yarn.resourcemanager.address", "10.10.141.14:8132");
+		conf.set("fs.default.name", "hdfs://10.10.141.14:9000");
+		conf.set("yarn.resourcemanager.scheduler.address", "10.10.141.14:8130");
 		conf.set("yarn.application.classpath", classpath);
 		job.setJobName(MapReduceTest.class.getName());
 		job.setJarByClass(MapReduceTest.class);
