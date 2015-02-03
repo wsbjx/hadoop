@@ -1,4 +1,0 @@
-使用root用户修改 /etc/profile 文件
-
-用如下命令将环境变量进行生效
-root@ubuntu:/# source /etc/profile
