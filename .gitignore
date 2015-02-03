@@ -1,4 +1,4 @@
-/hadoop.log
+/**/*.log
 /**/.settings
 /**/target
 /**/.classpath
