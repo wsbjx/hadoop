@@ -90,9 +90,9 @@ public class MapReduceTest extends Configured implements Tool
 		Job job = Job.getInstance();
 		Configuration conf = job.getConfiguration();
 		conf.set("mapreduce.framework.name", "yarn");
-		conf.set("yarn.resourcemanager.address", "10.10.141.14:8132");
-		conf.set("fs.default.name", "hdfs://10.10.141.14:9000");
-		conf.set("yarn.resourcemanager.scheduler.address", "10.10.141.14:8130");
+		conf.set("yarn.resourcemanager.address", "hadoop-14:8132");
+		conf.set("fs.default.name", "hdfs://hadoop-14:9000");
+		conf.set("yarn.resourcemanager.scheduler.address", "hadoop-14:8130");
 		conf.set("yarn.application.classpath", classpath);
 		job.setJobName(MapReduceTest.class.getName());
 		job.setJarByClass(MapReduceTest.class);
