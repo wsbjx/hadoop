@@ -43,6 +43,7 @@ public class HBaseToHDFSTest
 			byte[] english = result.getValue(Bytes.toBytes("score"), Bytes.toBytes("english"));
 			context.write(new Text(name), new IntWritable(Bytes.toInt(math)));
 			context.write(new Text(name), new IntWritable(Bytes.toInt(english)));
+			context.write(new Text("wanglei is a dog!"), new IntWritable(2015));
 		}
 	}
 
