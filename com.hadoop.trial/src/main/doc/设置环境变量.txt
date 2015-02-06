@@ -2,3 +2,6 @@
 
 用如下命令将环境变量进行生效
 root@ubuntu:/# source /etc/profile
+
+强制关闭进程
+kill -9 [PID]

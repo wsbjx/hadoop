@@ -24,7 +24,7 @@ public class HiveJdbcClient
 		}
 		Connection con = DriverManager.getConnection("jdbc:hive://10.10.141.14:10000/default", "", "");
 		Statement stmt = con.createStatement();
-		String tableName = "testHiveDriverTable";
+		String tableName = "testHiveDriverTable2";
 		stmt.executeQuery("drop table " + tableName);
 		ResultSet res = stmt.executeQuery("create table " + tableName + " (key int, value string)");
 		// show tables
@@ -47,10 +47,11 @@ public class HiveJdbcClient
 		// load data into table
 		// NOTE: filepath has to be local to the hive server
 		// NOTE: /tmp/a.txt is a ctrl-A separated file with two fields per line
-		String filepath = "/tmp/a.txt";
-		sql = "load data local inpath '" + filepath + "' into table " + tableName;
-		System.out.println("Running: " + sql);
-		res = stmt.executeQuery(sql);
+		// String filepath = "/tmp/a.txt";
+		// sql = "load data local inpath '" + filepath + "' into table " +
+		// tableName;
+		// System.out.println("Running: " + sql);
+		// res = stmt.executeQuery(sql);
 
 		// select * query
 		sql = "select * from " + tableName;
