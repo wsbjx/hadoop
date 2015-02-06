@@ -17,7 +17,7 @@ public class HBaseGetTest
 	public static void main(String[] args) throws IOException
 	{
 		Configuration configuration = new Configuration();
-		configuration.set("hbase.zookeeper.quorum", "10.10.141.1");
+		configuration.set("hbase.zookeeper.quorum", "hadoop-01,hadoop-02,hadoop-03");
 		configuration.set("hbase.zookeeper.property.clientPort", "2181");
 		configuration = HBaseConfiguration.create(configuration);
 		Connection connection = ConnectionFactory.createConnection(configuration);
