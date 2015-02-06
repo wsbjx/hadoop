@@ -1,4 +1,5 @@
- create external table hive_t_student(
+ create external table hive_t_student2(
+ key string,
  name string,
  age int,
  remark string,
@@ -9,4 +10,4 @@
  WITH SERDEPROPERTIES
  ("hbase.columns.mapping"=
  ":key,inform:name,inform:age,inform:remark,score:math,score:english")
- TBLPROPERTIES("hbase.table.name" = "T_STUDENT");
+ TBLPROPERTIES("hbase.table.name" = "T_STUDENT2");

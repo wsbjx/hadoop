@@ -1,0 +1,15 @@
+<?xml version="1.0"?>  
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+	<property>
+		<name>hive.aux.jars.path</name>
+		<value>file:///root/lyf/hive-0.14.0/lib/zookeeper-3.4.6.jar,file:///root/lyf/hive-0.14.0/lib/hive-hbase-handler-0.14.0.jar,file:///root/lyf/hive-0.14.0/lib/hbase-common-0.98.9-hadoop2.jar,file:///root/lyf/hive-0.14.0/lib/guava-11.0.2.jar</value>
+	</property>
+
+	<property>
+		<name>hive.zookeeper.quorum</name>
+		<description>Zookeeper quorum used by Hive's Table Lock Manager
+		</description>
+		<value>hadoop-01,hadoop-02,hadoop-03</value>
+	</property>
+</configuration>
