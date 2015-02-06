@@ -1,0 +1,12 @@
+ create external table hive_t_student(
+ name string,
+ age int,
+ remark string,
+ math int,
+ english int
+ )
+ STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+ WITH SERDEPROPERTIES
+ ("hbase.columns.mapping"=
+ ":key,inform:name,inform:age,inform:remark,score:math,score:english")
+ TBLPROPERTIES("hbase.table.name" = "T_STUDENT");
