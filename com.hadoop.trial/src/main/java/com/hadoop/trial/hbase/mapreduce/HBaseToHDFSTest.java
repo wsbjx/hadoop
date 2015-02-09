@@ -51,7 +51,7 @@ public class HBaseToHDFSTest
 	{
 		String classpath = "$HADOOP_CONF_DIR,$HADOOP_COMMON_HOME/share/hadoop/common/*,$HADOOP_COMMON_HOME/share/hadoop/common/lib/*,$HADOOP_HDFS_HOME/share/hadoop/hdfs/*,$HADOOP_HDFS_HOME/share/hadoop/hdfs/lib/*,$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*,$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*,$HADOOP_YARN_HOME/share/hadoop/yarn/*,$HADOOP_YARN_HOME/share/hadoop/yarn/lib/*";
 		Configuration configuration = new Configuration();
-		configuration.set("hbase.zookeeper.quorum", "10.10.141.1");
+		configuration.set("hbase.zookeeper.quorum", "hadoop-01,hadoop-02,hadoop-03");
 		configuration.set("hbase.zookeeper.property.clientPort", "2181");
 		configuration.set("mapreduce.framework.name", "yarn");
 		configuration.set("yarn.resourcemanager.address", "10.10.141.14:8132");
