@@ -1,0 +1,4 @@
+到主节点
+$ cd ~/.ssh
+$ ssh-keygen -t rsa
+$ scp -r id_rsa.pub hadoop@[从节点]:/home/hadoop/.ssh/authorized_keys
