@@ -10,67 +10,11 @@
 	See accompanying LICENSE file. -->
 
 <!-- Put site-specific property overrides in this file. -->
-
 <configuration>
-	<property>
-		<name>dfs.nameservices</name>
-		<value>gx-cluster</value>
-	</property>
-	<property>
-		<name>dfs.ha.namenodes.guangxi-cluster</name>
-		<value>nn1,nn2</value>
-	</property>
-	<property>
-		<name>dfs.namenode.rpc-address.guangxi-cluster.nn1</name>
-		<value>guangxi_147_97:9000</value>
-	</property>
-	<property>
-		<name>dfs.namenode.rpc-address.guangxi-cluster.nn2</name>
-		<value>guangxi_147_98:9000</value>
-	</property>
-
-	<!-- nn1的http通信地址 -->
-	<property>
-		<name>dfs.namenode.http-address.guangxi-cluster.nn1</name>
-		<value>guangxi_147_97:50070</value>
-	</property>
-
-	<!-- nn2的http通信地址 -->
-	<property>
-		<name>dfs.namenode.http-address.guangxi-cluster.nn2</name>
-		<value>guangxi_147_98:50070</value>
-	</property>
-	<!-- 指定NameNode的元数据在JournalNode上的存放位置 -->
-	<property>
-		<name>dfs.namenode.shared.edits.dir</name>
-		<value>qjournal://guangxi_147_96:8485;guangxi_147_97:8485;guangxi_147_98:8485/guangxi-cluster</value>
-	</property>
-
-	<!-- 配置失败自动切换实现方式 -->
-	<property>
-		<name>dfs.client.failover.proxy.provider.guangxi-cluster</name>
-		<value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
-	</property>
-	<!-- 配置隔离机制 -->
-	<property>
-		<name>dfs.ha.fencing.methods</name>
-		<value>sshfence</value>
-	</property>
-	<!-- 使用隔离机制时需要ssh免密码登陆 -->
-	<property>
-		<name>dfs.ha.fencing.ssh.private-key-files</name>
-		<value>/root/.ssh/id_rsa</value>
-	</property>
-	<!-- 指定NameNode的元数据在JournalNode上的存放位置 -->
-	<property>
-		<name>dfs.journalnode.edits.dir</name>
-		<value>/opt/hadoop/hadoop-2.6.0/var/journal</value>
-	</property>
-	<!--指定支持高可用自动切换机制 -->
-	<property>
-		<name>dfs.ha.automatic-failover.enabled</name>
-		<value>true</value>
-	</property>
+ <property>
+  <name>dfs.namenode.secondary.http-address</name>
+  <value>hadoop-98:9001</value>
+ </property>
 	<!--指定namenode名称空间的存储地址 -->
 	<property>
 		<name>dfs.namenode.name.dir</name>
@@ -81,27 +25,15 @@
 		<name>dfs.datanode.data.dir</name>
 		<value>file:/opt/hadoop/hadoop-2.6.0/data/dfs/data</value>
 	</property>
-	<!--指定数据冗余份数 -->
-	<property>
-		<name>dfs.replication</name>
-		<value>3</value>
-	</property>
-	<!--指定可以通过web访问hdfs目录 -->
-	<property>
-		<name>dfs.webhdfs.enabled</name>
-		<value>true</value>
-	</property>
-	<!--保证数据恢复 -->
-	<property>
-		<name>dfs.journalnode.http-address</name>
-		<value>0.0.0.0:8480</value>
-	</property>
-	<property>
-		<name>dfs.journalnode.rpc-address</name>
-		<value>0.0.0.0:8485</value>
-	</property>
-	<property>
-		<name>ha.zookeeper.quorum</name>
-		<value>guangxi_147_96:2181,guangxi_147_97:2181,guangxi_147_98:2181</value>
-	</property>
+	
+ <property>
+  <name>dfs.replication</name>
+  <value>3</value>
+ </property>
+ 
+ <property>
+  <name>dfs.webhdfs.enabled</name>
+  <value>true</value>
+ </property>
+
 </configuration>
