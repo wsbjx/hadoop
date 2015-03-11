@@ -4,8 +4,6 @@ import java.io.*;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
-import org.wltea.analyzer.core.IKSegmenter;
-import org.wltea.analyzer.core.Lexeme;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
 public class IKAnalyzerTest
@@ -28,14 +26,15 @@ public class IKAnalyzerTest
 		}
 		reader.close();
 		System.out.println();
+		analyzer.close();
 
-		// 独立Lucene实现
-		StringReader re = new StringReader(str);
-		IKSegmenter ik = new IKSegmenter(re, true);
-		Lexeme lex = null;
-		while ((lex = ik.next()) != null)
-		{
-			System.out.print(lex.getLexemeText() + "|");
-		}
+		// // 独立Lucene实现
+		// StringReader re = new StringReader(str);
+		// IKSegmenter ik = new IKSegmenter(re, true);
+		// Lexeme lex = null;
+		// while ((lex = ik.next()) != null)
+		// {
+		// System.out.print(lex.getLexemeText() + "|");
+		// }
 	}
 }
