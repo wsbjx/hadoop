@@ -82,5 +82,10 @@
 			<scope>system</scope>
 			<systemPath>${JAVA_HOME}/lib/tools.jar</systemPath>
 		</dependency>
+		<dependency>
+			<groupId>com.hadoop</groupId>
+			<artifactId>org.wltea.analyzer</artifactId>
+			<version>1.0</version>
+		</dependency>
 	</dependencies>
 </project>
