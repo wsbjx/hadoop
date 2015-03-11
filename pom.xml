@@ -7,10 +7,13 @@
 	<version>1.0</version>
 	<packaging>pom</packaging>
 	<modules>
-		<module>org.wltea.analyzer</module>
 		<module>com.hadoop.trial</module>
 		<module>com.hadoop.runtime</module>
 	</modules>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jcseg.version>1.9.5</jcseg.version>
+	</properties>
 	<build>
 		<plugins>
 			<plugin>

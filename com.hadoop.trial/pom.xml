@@ -87,5 +87,10 @@
 			<artifactId>org.wltea.analyzer</artifactId>
 			<version>1.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.lionsoul.jcseg</groupId>
+			<artifactId>jcseg-core</artifactId>
+			<version>1.9.5</version>
+		</dependency>
 	</dependencies>
 </project>
