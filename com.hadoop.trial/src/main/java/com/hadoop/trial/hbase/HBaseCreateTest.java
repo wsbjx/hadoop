@@ -53,5 +53,6 @@ public class HBaseCreateTest
 				table.put(put);
 			}
 		}
+		connection.close();
 	}
 }

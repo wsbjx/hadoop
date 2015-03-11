@@ -24,20 +24,27 @@ public class HBaseScanTest
 		configuration.set("hbase.zookeeper.property.clientPort", "2181");
 		configuration = HBaseConfiguration.create(configuration);
 		Connection connection = ConnectionFactory.createConnection(configuration);
-		Table table = connection.getTable(TableName.valueOf("T_STUDENT"));
-		Scan scan = new Scan();
+		Table table = connection.getTable(TableName.valueOf("location"));
+		Scan scan = new Scan(Bytes.toBytes("100001567788005922-20150220184100"),
+				Bytes.toBytes("100001567788005922-20150225184100"));
 		ResultScanner resultScanner = null;
+		int count = 0;
 		try
 		{
 			resultScanner = table.getScanner(scan);
 			for (Result r : resultScanner)
 			{
+				count++;
+				if (count > 10000)
+				{
+					break;
+				}
 				for (Cell cell : r.listCells())
 				{
-					System.out.println("row:" + Bytes.toString(CellUtil.cloneRow(cell)));
-					System.out.println("family:" + Bytes.toString(CellUtil.cloneFamily(cell)));
-					System.out.println("qualifier:" + Bytes.toString(CellUtil.cloneQualifier(cell)));
-					System.out.println("value:" + Bytes.toString(CellUtil.cloneValue(cell)));
+					System.out.print("row:" + Bytes.toString(CellUtil.cloneRow(cell)));
+					System.out.print("family:" + Bytes.toString(CellUtil.cloneFamily(cell)));
+					System.out.print("qualifier:" + Bytes.toString(CellUtil.cloneQualifier(cell)));
+					System.out.print("value:" + Bytes.toString(CellUtil.cloneValue(cell)));
 					System.out.println("timestamp:" + cell.getTimestamp());
 					System.out.println("-------------------------------------------");
 				}
